@@ -7,58 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 入力するページ -->
-    <div id="inputPage">
-        <h1>やることを追加</h1>
-        <form id="taskForm">
-            <label for="task">やること:</label>
-            <input type="text" id="task" name="task" required>
-            <br>
-            <label for="priority">優先度:</label>
-            <select id="priority" name="priority">
-                <option value="1">1: 最優先</option>
-                <option value="2">2: 優先</option>
-                <option value="3">3: 普通</option>
-                <option value="4">4: 時間があれば</option>
-            </select>
-            <br>
-            <label for="estimatedTime">想定時間:</label>
-            <input type="text" id="estimatedHours" name="estimatedHours" size="2">時間
-            <input type="text" id="estimatedMinutes" name="estimatedMinutes" size="2">分
-            <br>
-            <label for="startDate">開始日:</label>
-            <input type="date" id="startDate" name="startDate" required>
-            <br>
-            <label for="dueDate">締切日:</label>
-            <input type="date" id="dueDate" name="dueDate" required>
-            <br>
-            <label for="notes">備考:</label>
-            <textarea id="notes" name="notes"></textarea>
-            <br>
-            <button type="button" onclick="addTask()">追加</button>
-        </form>
-        <button onclick="showPage('listPage')">表示ページへ</button>
-    </div>
-
-    <!-- 表示するページ -->
-    <div id="listPage" style="display: none;">
+    <header>
         <h1>やることリスト</h1>
-        <div>
-            <button onclick="showTasks('all')">一覧</button>
-            <button onclick="showTasks('1')">優先度1</button>
-            <button onclick="showTasks('2')">優先度2</button>
-            <button onclick="showTasks('3')">優先度3</button>
-            <button onclick="showTasks('4')">優先度4</button>
-        </div>
-        <div>
-            <button onclick="sortTasks('input')">入力順</button>
-            <button onclick="sortTasks('start')">開始日順</button>
-            <button onclick="sortTasks('due')">締切日順</button>
-        </div>
-        <ul id="taskList"></ul>
-        <button onclick="showPage('inputPage')">入力ページへ</button>
+        <button onclick="window.location.href='input.html'">新規入力</button>
+    </header>
+    <div class="sort-buttons">
+        <button onclick="sortList('input')">入力順</button>
+        <button onclick="sortList('start')">開始日順</button>
+        <button onclick="sortList('deadline')">締切日順</button>
     </div>
-
+    <div class="filter-buttons">
+        <button onclick="filterList('all')">一覧</button>
+        <button onclick="filterList(1)">優先度1</button>
+        <button onclick="filterList(2)">優先度2</button>
+        <button onclick="filterList(3)">優先度3</button>
+        <button onclick="filterList(4)">優先度4</button>
+    </div>
+    <div id="todo-list"></div>
     <script src="script.js"></script>
 </body>
 </html>
+
