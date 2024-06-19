@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新規入力</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>新規入力</h1>
+        <button onclick="window.location.href='index.html'">戻る</button>
+    </header>
+    <form id="todo-form">
+        <label for="task">やること:</label>
+        <input type="text" id="task" name="task" required>
+        <label for="priority">優先度:</label>
+        <select id="priority" name="priority" required>
+            <option value="1">1: 最優先</option>
+            <option value="2">2: 優先</option>
+            <option value="3">3: 普通</option>
+            <option value="4">4: 時間があれば</option>
+        </select>
+        <label for="duration">想定時間:</label>
+        <input type="number" id="hours" name="hours" placeholder="時間" min="0">時間
+        <input type="number" id="minutes" name="minutes" placeholder="分" min="0" max="59">分
+        <label for="start-date">開始日:</label>
+        <input type="date" id="start-date" name="start-date" required>
+        <label for="end-date">締切日:</label>
+        <input type="date" id="end-date" name="end-date" required>
+        <label for="notes">備考:</label>
+        <textarea id="notes" name="notes"></textarea>
+        <button type="button" onclick="addTask()">追加</button>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
