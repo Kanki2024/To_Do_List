@@ -13,12 +13,11 @@
     </header>
     <main>
         <div class="input-form">
-        <div align="center">
-            <div align="left">
+            <div align="center">
                 <label for="task">やること:</label>
                 <input type="text" id="task" required>
             </div>
-            <div align="left">
+            <div align="center">
                 <label for="priority">優先度:</label>
                 <select id="priority">
                     <option value="1">最優先</option>
@@ -27,27 +26,26 @@
                     <option value="4">時間があれば</option>
                 </select>
             </div>
-            <div align="left">
+            <div align="center">
                 <label for="hours">想定時間:</label>
                 <input type="number" id="hours" placeholder="時間" min="0">
                 <input type="number" id="minutes" placeholder="分" min="0" max="59">
             </div>
-            <div align="left">
+            <div align="center">
                 <label for="start-date">開始日:</label>
                 <input type="date" id="start-date">
             </div>
-            <div align="left">
+            <div align="center">
                 <label for="end-date">締切日:</label>
                 <input type="date" id="end-date">
             </div>
-            <div align="left">
+            <div align="center">
                 <label for="notes">備考:</label>
                 <textarea id="notes"></textarea>
             </div>
-            <div align="left">
+            <div align="center">
                 <button class="primary-btn" onclick="addTask()">追加</button>
             </div>
-        </div>
         </div>
     </main>
     <script src="script.js"></script>
