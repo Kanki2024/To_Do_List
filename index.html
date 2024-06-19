@@ -12,17 +12,17 @@
         <button class="primary-btn" onclick="window.location.href='input.html'">新規入力</button>
     </header>
     <main>
+        <div class="filter-buttons">
+            <button onclick="filterList('all')">一覧</button>
+            <button onclick="filterList(1)">１：最優先</button>
+            <button onclick="filterList(2)">２：優先</button>
+            <button onclick="filterList(3)">３：普通</button>
+            <button onclick="filterList(4)">４：時間があれば</button>
+        </div>
         <div class="sort-buttons">
             <button onclick="sortList('input')">入力順</button>
             <button onclick="sortList('start')">開始日順</button>
             <button onclick="sortList('deadline')">締切日順</button>
-        </div>
-        <div class="filter-buttons">
-            <button onclick="filterList('all')">一覧</button>
-            <button onclick="filterList(1)">最優先</button>
-            <button onclick="filterList(2)">優先</button>
-            <button onclick="filterList(3)">普通</button>
-            <button onclick="filterList(4)">時間があれば</button>
         </div>
         <div id="todo-list" class="todo-list"></div>
     </main>
