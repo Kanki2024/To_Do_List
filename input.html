@@ -9,32 +9,36 @@
 <body>
     <header>
         <h1>新規入力</h1>
-        <button class="primary-btn" onclick="window.location.href='index.html'">戻る</button>
+        <button class="primary-btn" onclick="window.location.href='index.html'">リストに戻る</button>
     </header>
     <main>
-        <form id="todo-form" class="todo-form">
+        <div class="input-form">
             <label for="task">やること:</label>
-            <input type="text" id="task" name="task" required>
+            <input type="text" id="task" required>
+            
             <label for="priority">優先度:</label>
-            <select id="priority" name="priority" required>
-                <option value="1">1: 最優先</option>
-                <option value="2">2: 優先</option>
-                <option value="3">3: 普通</option>
-                <option value="4">4: 時間があれば</option>
+            <select id="priority">
+                <option value="1">最優先</option>
+                <option value="2">優先</option>
+                <option value="3">普通</option>
+                <option value="4">時間があれば</option>
             </select>
-            <label for="duration">想定時間:</label>
-            <div class="duration-input">
-                <input type="number" id="hours" name="hours" placeholder="時間" min="0">時間
-                <input type="number" id="minutes" name="minutes" placeholder="分" min="0" max="59">分
-            </div>
+
+            <label for="hours">想定時間:</label>
+            <input type="number" id="hours" placeholder="時間" min="0">
+            <input type="number" id="minutes" placeholder="分" min="0" max="59">
+
             <label for="start-date">開始日:</label>
-            <input type="date" id="start-date" name="start-date" required>
+            <input type="date" id="start-date">
+
             <label for="end-date">締切日:</label>
-            <input type="date" id="end-date" name="end-date" required>
+            <input type="date" id="end-date">
+
             <label for="notes">備考:</label>
-            <textarea id="notes" name="notes"></textarea>
-            <button type="button" class="primary-btn" onclick="addTask()">追加</button>
-        </form>
+            <textarea id="notes"></textarea>
+
+            <button class="primary-btn" onclick="addTask()">追加</button>
+        </div>
     </main>
     <script src="script.js"></script>
 </body>
