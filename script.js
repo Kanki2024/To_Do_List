@@ -1,64 +1,77 @@
-let tasks = [];
+document.addEventListener("DOMContentLoaded", () => {
+    if (window.location.pathname.includes("index.html")) {
+        displayTasks();
+    } else if (window.location.pathname.includes("input.html")) {
+        setDefaultDates();
+    }
+});
+
+function setDefaultDates() {
+    const today = new Date().toISOString().split('T')[0];
+    document.getElementById('start-date').value = today;
+    const nextWeek = new Date();
+    nextWeek.setDate(nextWeek.getDate() + 7);
+    document.getElementById('end-date').value = nextWeek.toISOString().split('T')[0];
+}
 
 function addTask() {
     const task = document.getElementById('task').value;
     const priority = document.getElementById('priority').value;
-    const estimatedHours = document.getElementById('estimatedHours').value;
-    const estimatedMinutes = document.getElementById('estimatedMinutes').value;
-    const startDate = document.getElementById('startDate').value;
-    const dueDate = document.getElementById('dueDate').value;
+    const hours = document.getElementById('hours').value;
+    const minutes = document.getElementById('minutes').value;
+    const startDate = document.getElementById('start-date').value;
+    const endDate = document.getElementById('end-date').value;
     const notes = document.getElementById('notes').value;
 
-    const newTask = {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.push({
         task,
         priority,
-        estimatedTime: `${estimatedHours}時間${estimatedMinutes}分`,
+        duration: `${hours}時間 ${minutes}分`,
         startDate,
-        dueDate,
-        notes,
-        added: new Date().toISOString()
-    };
+        endDate,
+        notes
+    });
 
-    tasks.push(newTask);
-    document.getElementById('taskForm').reset();
-    alert('タスクが追加されました');
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+    window.location.href = 'index.html';
 }
 
-function showPage(pageId) {
-    document.getElementById('inputPage').style.display = pageId === 'inputPage' ? 'block' : 'none';
-    document.getElementById('listPage').style.display = pageId === 'listPage' ? 'block' : 'none';
-}
+function displayTasks(filter = 'all', sort = 'input') {
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    let filteredTasks = tasks;
 
-function showTasks(filter) {
-    const taskList = document.getElementById('taskList');
-    taskList.innerHTML = '';
+    if (filter !== 'all') {
+        filteredTasks = tasks.filter(task => task.priority == filter);
+    }
 
-    const filteredTasks = filter === 'all' ? tasks : tasks.filter(task => task.priority === filter);
+    if (sort === 'start') {
+        filteredTasks.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
+    } else if (sort === 'deadline') {
+        filteredTasks.sort((a, b) => new Date(a.endDate) - new Date(b.endDate));
+    }
 
+    const todoList = document.getElementById('todo-list');
+    todoList.innerHTML = '';
     filteredTasks.forEach(task => {
-        const li = document.createElement('li');
-        li.className = `priority-${task.priority}`;
-        li.innerHTML = `
-            <div>${task.task}</div>
-            <div>優先度: ${task.priority} | 想定時間: ${task.estimatedTime} | 開始日: ${task.startDate} | 締切日: ${task.dueDate}</div>
+        const taskItem = document.createElement('div');
+        taskItem.classList.add('task-item', `priority-${task.priority}`);
+        taskItem.innerHTML = `
+            <div>やること: ${task.task}</div>
+            <div>優先度: ${task.priority} | 想定時間: ${task.duration} | 開始日: ${task.startDate} | 締切日: ${task.endDate}</div>
             <div>備考: ${task.notes}</div>
         `;
-        taskList.appendChild(li);
+        todoList.appendChild(taskItem);
     });
 }
 
-function sortTasks(order) {
-    if (order === 'input') {
-        tasks.sort((a, b) => new Date(a.added) - new Date(b.added));
-    } else if (order === 'start') {
-        tasks.sort((a, b) => new Date(a.startDate) - new Date(b.startDate));
-    } else if (order === 'due') {
-        tasks.sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
-    }
-
-    showTasks('all');
+function sortList(sortType) {
+    const filterType = document.querySelector('.filter-buttons .active')?.dataset.filter || 'all';
+    displayTasks(filterType, sortType);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    showPage('inputPage');
-});
+function filterList(filterType) {
+    document.querySelectorAll('.filter-buttons button').forEach(button => button.classList.remove('active'));
+    document.querySelector(`.filter-buttons button[data-filter='${filterType}']`).classList.add('active');
+    displayTasks(filterType);
+}
