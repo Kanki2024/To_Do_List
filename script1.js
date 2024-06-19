@@ -72,6 +72,7 @@ function sortList(sortType) {
 
 function filterList(filterType) {
     document.querySelectorAll('.filter-buttons button').forEach(button => button.classList.remove('active'));
-    document.querySelector(`.filter-buttons button[data-filter='${filterType}']`).classList.add('active');
+    const filterButton = document.querySelector(`.filter-buttons button[data-filter='${filterType}']`);
+    if (filterButton) filterButton.classList.add('active');
     displayTasks(filterType);
 }
