@@ -9,22 +9,23 @@
 <body>
     <header>
         <h1>やることリスト</h1>
-        <button onclick="window.location.href='input.html'">新規入力</button>
+        <button class="primary-btn" onclick="window.location.href='input.html'">新規入力</button>
     </header>
-    <div class="sort-buttons">
-        <button onclick="sortList('input')">入力順</button>
-        <button onclick="sortList('start')">開始日順</button>
-        <button onclick="sortList('deadline')">締切日順</button>
-    </div>
-    <div class="filter-buttons">
-        <button onclick="filterList('all')">一覧</button>
-        <button onclick="filterList(1)">優先度1</button>
-        <button onclick="filterList(2)">優先度2</button>
-        <button onclick="filterList(3)">優先度3</button>
-        <button onclick="filterList(4)">優先度4</button>
-    </div>
-    <div id="todo-list"></div>
+    <main>
+        <div class="sort-buttons">
+            <button onclick="sortList('input')">入力順</button>
+            <button onclick="sortList('start')">開始日順</button>
+            <button onclick="sortList('deadline')">締切日順</button>
+        </div>
+        <div class="filter-buttons">
+            <button onclick="filterList('all')">一覧</button>
+            <button onclick="filterList(1)">優先度1</button>
+            <button onclick="filterList(2)">優先度2</button>
+            <button onclick="filterList(3)">優先度3</button>
+            <button onclick="filterList(4)">優先度4</button>
+        </div>
+        <div id="todo-list" class="todo-list"></div>
+    </main>
     <script src="script.js"></script>
 </body>
 </html>
-
