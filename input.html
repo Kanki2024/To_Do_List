@@ -13,31 +13,39 @@
     </header>
     <main>
         <div class="input-form">
-            <label for="task">やること:</label>
-            <input type="text" id="task" required>
-            
-            <label for="priority">優先度:</label>
-            <select id="priority">
-                <option value="1">最優先</option>
-                <option value="2">優先</option>
-                <option value="3">普通</option>
-                <option value="4">時間があれば</option>
-            </select>
-
-            <label for="hours">想定時間:</label>
-            <input type="number" id="hours" placeholder="時間" min="0">
-            <input type="number" id="minutes" placeholder="分" min="0" max="59">
-
-            <label for="start-date">開始日:</label>
-            <input type="date" id="start-date">
-
-            <label for="end-date">締切日:</label>
-            <input type="date" id="end-date">
-
-            <label for="notes">備考:</label>
-            <textarea id="notes"></textarea>
-
-            <button class="primary-btn" onclick="addTask()">追加</button>
+            <div align="center">
+                <label for="task">やること:</label>
+                <input type="text" id="task" required>
+            </div>
+            <div align="center">
+                <label for="priority">優先度:</label>
+                <select id="priority">
+                    <option value="1">最優先</option>
+                    <option value="2">優先</option>
+                    <option value="3">普通</option>
+                    <option value="4">時間があれば</option>
+                </select>
+            </div>
+            <div align="center">
+                <label for="hours">想定時間:</label>
+                <input type="number" id="hours" placeholder="時間" min="0">
+                <input type="number" id="minutes" placeholder="分" min="0" max="59">
+            </div>
+            <div align="center">
+                <label for="start-date">開始日:</label>
+                <input type="date" id="start-date">
+            </div>
+            <div align="center">
+                <label for="end-date">締切日:</label>
+                <input type="date" id="end-date">
+            </div>
+            <div align="center">
+                <label for="notes">備考:</label>
+                <textarea id="notes"></textarea>
+            </div>
+            <div align="center">
+                <button class="primary-btn" onclick="addTask()">追加</button>
+            </div>
         </div>
     </main>
     <script src="script.js"></script>
